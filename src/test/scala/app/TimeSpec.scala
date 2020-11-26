@@ -39,4 +39,8 @@ class TimeSpec extends AnyFlatSpec with Matchers {
     val time2 = Time(0, 10)
     time1 - time2 shouldBe 60
   }
+
+  "Time(1, 1).toString" should "be 01:01" in {
+    Time(1, 1).toString shouldBe "01:01"
+  }
 }

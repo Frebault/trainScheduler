@@ -6,7 +6,7 @@ import org.scalatest.matchers.should.Matchers
 class TimeSpec extends AnyFlatSpec with Matchers {
   "Time hours" should "be within 0 and 23" in {
 
-    an[IllegalArgumentException] should be thrownBy Time(-1, 0)
+    an[IllegalArgumentException] should be thrownBy Time(-1)
   }
 
   "Time default values" should "be 0" in {
@@ -42,5 +42,17 @@ class TimeSpec extends AnyFlatSpec with Matchers {
 
   "Time(1, 1).toString" should "be 01:01" in {
     Time(1, 1).toString shouldBe "01:01"
+  }
+
+  "Time(1, 1).compare(Time(2,0))" should "be -1" in {
+    Time(1, 1).compare(Time(2)) should be < 0
+  }
+
+  "Time().compare(Time())" should "be -1" in {
+    Time().compare(Time()) shouldBe 0
+  }
+
+  "Time(5, 1).compare(Time(5,0))" should "be -1" in {
+    Time(5, 1).compare(Time(5)) should be > 0
   }
 }

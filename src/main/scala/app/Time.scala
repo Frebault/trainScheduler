@@ -8,15 +8,16 @@ object Time {
   }
 }
 
-case class Time(hours: Int = 0, minutes: Int = 0) {
+case class Time(hours: Int = 0, minutes: Int = 0) extends Ordered[Time] {
   require(hours >= 0 && hours < 24, "Hour must be within 0 and 23")
   require(minutes >= 0 && minutes < 59, "Minutes must be within 0 and 59")
 
+  override lazy val toString: String = f"$hours%02d:$minutes%02d"
   val asMinutes: Int = hours * 60 + minutes
+
+  override def compare(that: Time): Int = asMinutes - that.asMinutes
 
   def -(that: Time): Int = minus(that)
 
   def minus(that: Time): Int = asMinutes - that.asMinutes
-
-  override lazy val toString: String = f"$hours%02d:$minutes%02d"
 }

@@ -4,10 +4,10 @@ import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
 class TimeSpec extends AnyFlatSpec with Matchers {
-    "Time hours" should "be within 0 and 23" in {
+  "Time hours" should "be within 0 and 23" in {
 
-      the [IllegalArgumentException] thrownBy new Time(-1, 0) should have message "requirement failed: Hour must be within 0 and 23"
-    }
+    an[IllegalArgumentException] should be thrownBy Time(-1, 0)
+  }
 
   "Time default values" should "be 0" in {
     val time = Time()

@@ -4,6 +4,8 @@ case class Train(info: TrainInfo, schedule: Seq[(Time, Station)]) {
   require(schedule.length > 1, "Schedule must have at least 2 elements")
 
   val stations: Seq[Station] = schedule.map(_._2)
+
+  def timeAt(station: Station): Option[Time] = schedule.find(_._2 == station).map(_._1)
 }
 
 sealed abstract class TrainInfo {
